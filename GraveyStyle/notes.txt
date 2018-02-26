@@ -1,0 +1,4 @@
+[7:05 AM] corporal 🐫: sio_set sets stuff in client.cfg
+[7:06 AM] corporal 🐫: if I remember, you can also set custon data
+[7:06 AM] corporal 🐫: I think the syntax is sio_set("GroupNane", "SettingName", value)
+

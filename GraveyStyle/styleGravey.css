@@ -1,0 +1,298 @@
+/*******************************
+ * Global styles
+*******************************/
+textarea, input {
+	outline: none;
+}
+
+body, html {
+    overflow-x: hidden; 
+    overflow-y: hidden;
+    -webkit-font-smoothing: none;
+}
+body {
+	/* Make the panel transparent to the awesomium client */
+	background-color: transparent;
+}
+
+	/* custom fonts */
+@font-face
+{
+	font-family:glow_monofonto_vl_dialogs;
+	src:url("fonts/glow_monofonto_vl_dialogs.fnt");
+	
+	font-family:AnimeSans;
+	src:url("../../OpenSans.ttf");
+}
+
+/*******************************
+ * Content Wrapper
+*******************************/
+#content {
+	position: absolute;
+	
+	top:    32px;
+	bottom: 0;
+	left:  0;
+	right: 0;
+}
+
+/*******************************
+ * Chat component
+*******************************/
+#chat {
+    width: 600px;
+    height: 300px;
+	
+	position: absolute; 
+	
+	float: left;
+	
+	margin-right:auto;
+	margin-left: auto;
+ 
+    display: none; /* hide by default */
+}
+
+/*******************************
+ * Message Input
+*******************************/
+#message
+{
+	position: absolute;
+	bottom: 0;
+	left:   0;
+	right:  0;
+	margin: 0;
+
+    opacity: 0;
+	background-color: rgba(255, 182, 66, .40); /* input box */
+	
+	border-style: solid;
+	border-color:  rgb(255, 182, 66);
+	border-top-width: 2px;
+	border-bottom-width: 2px;
+	border-left-width: 2px;
+	border-right-width: 2px;
+    padding:      .5em;
+    font-size:    18px;
+    line-height:  1.2em;
+    color:		  #fff; 
+    font-family: AnimeSans, sans-serif;
+    -webkit-appearance: none;
+}
+
+
+::-webkit-scrollbar {
+	display: block;
+	background-color: transparent;
+	width: 10px;
+}
+::-webkit-scrollbar-thumb  {
+    background-color: #333;
+}
+
+#message.focused {
+    opacity: 1;
+}
+
+form#chatinput #message::-webkit-input-placeholder
+{
+    color: #fff;
+}
+
+#messages
+{
+	-webkit-transition: background-color 0.4s;
+    transition: background-color 0.4s;
+
+	padding: 10px;
+    top:    0;
+    left:   0;
+    right:  0;
+    bottom: 45px;
+    position:   absolute;
+    overflow-x: hidden;
+    word-wrap:  normal;
+	
+	font-size:    18px;
+}
+#messages.dim {
+	background-color: rgba(30, 30, 30, .40);
+}
+#messages.clear {
+	background-color: rgba(30, 30, 30, .00);
+}
+
+
+/*******************************
+ * Message type styling
+*******************************/
+.mitem {
+    font-family:  AnimeSans, sans-serif;
+	
+    color: #fff; 
+    text-shadow: 0px 0px 5px #000;
+    -webkit-font-smoothing: antialiased;
+    white-space: pre-wrap;
+}
+
+.mitem .nametag {
+	font-weight: bold;
+}
+
+.nametag:after {
+	content: ': ';
+}
+
+.nameprefix {
+    padding: 2px;
+    border-radius: 2px;
+    margin-right:5px;
+    text-align:center;
+    font-size: 18px;
+    display: inline-block;
+    width: 20px;
+    line-height: 18px;
+    vertical-align: middle;
+    font-family: Consolas;
+    margin-bottom: 3px;
+}
+
+
+.globaltag { /* Global "//" tag */
+    background-color: #000;
+    color: #fff;
+}
+.globaltag::after {
+    content: '//';
+}
+
+.factiontag {
+    background-color: #4da6ff;
+    color: #fff;
+}
+.factiontag::after {
+    content: 'F';
+}
+
+/*
+* System messages
+*/
+
+.mitem.system .nametag {
+	color: red;
+}
+
+.mitem.system {
+}
+
+.mitem.system_head {
+    color: rgb(255, 182, 66);
+    font-size: 120%; 	
+}
+
+.mitem.system_console {
+    font-weight: bold;
+}
+
+.mitem.system_sub_head {
+    font-size: 110%;
+}
+
+
+/*
+* Whisper messaging
+*/
+
+/* Whisper user name tags */
+.mitem.whisper-local .nametag, .mitem.whisper .nametag 
+{
+	border-width: 2px;
+	border-style: solid;
+	border-color: rgb(255, 182, 66);
+	background-color: rgba(255, 182, 66, .40);
+	color: #fff;
+	font-weight: bold;
+}
+
+/* Whisper user text */
+.mitem.whisper-local, .mitem.whisper 
+{
+	color: rgb(255, 182, 66);
+}
+
+/* "Jak to you: hello" */
+.mitem.whisper .nametag::after {
+	content: ' to you ';
+}
+/* "You to Jak: hello" */
+.mitem.whisper-local .nametag::before {
+    content: 'You to ';
+}
+.mitem.whisper-local .nametag::after {
+	content: '';
+}
+
+/*******************************
+ * Tab Menu
+*******************************/
+
+#menu
+{
+	height: 32px;
+	width: 600px;
+	
+	top: -32px;
+	position: absolute;
+	
+	background-color: red;
+}
+
+#openSettingsButton
+{
+	position: inline;
+    width: 32px;
+    height: 32px;
+}
+
+#allChat
+{
+	position: inline;
+	height: 32px;
+}
+
+#globalChat
+{
+	position: inline;
+	height: 32px;
+}
+
+#localChat
+{
+	position: inline;
+    height: 32px;
+}
+
+/*******************************
+ * Chat Settings
+*******************************/
+
+#settings
+{
+	position: absolute;
+	
+	height: 100px;
+	width: 100px;
+	float: left;
+	left: 600px;
+	
+	display: none;
+}
+
+#exitSettingsButton
+{	
+}
+
+
+
