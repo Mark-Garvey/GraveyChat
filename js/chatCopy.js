@@ -345,6 +345,7 @@ function ChatManager()
 						this.addUserMessageFormated(message[0], message[1], message[2], message[3]);
 					}
 				}
+				this.highlightCurrentTab("all");
 				break;
 			}
 			
@@ -358,6 +359,7 @@ function ChatManager()
 					message = message.split("§");
 					this.addUserMessageFormated(message[0], message[1], message[2], message[3]);
 				}
+				this.highlightCurrentTab("global");
 				break;
 			}
 			
@@ -371,6 +373,7 @@ function ChatManager()
 					message = message.split("§");
 					this.addUserMessageFormated(message[0], message[1], message[2], message[3]);
 				}
+				this.highlightCurrentTab("local");
 				break;
 			}
 			
@@ -384,6 +387,7 @@ function ChatManager()
 					message = message.split("§");
 					this.addUserMessageFormated(message[0], message[1], message[2], message[3]);
 				}
+				this.highlightCurrentTab("faction");
 				break;
 			}
 			
@@ -397,6 +401,7 @@ function ChatManager()
 					message = message.split("§");
 					this.addWhisperMessageFormatted(message[1], message[2], parseInt(message[3]));
 				}
+				this.highlightCurrentTab("whisper");
 				break;
 			}
 			
@@ -410,11 +415,21 @@ function ChatManager()
 					message = message.split("§");
 					this.addSystemMessageFormatted(message[1], message[2]);
 				}
+				this.highlightCurrentTab("system");
 				break;
 			}
         }
     };
 
+	this.highlightCurrentTab = function(channel) {
+		for (let chan in channelType) {
+			var el = $("#" + channelType[chan] + "Tab");
+			el.css("background-color", "transparent");
+		}
+		var el = $("#" + channel + "Tab");
+		el.css("background-color", "black");
+	};
+	
 	this.clearChatBox = function() {
 	var dead_children = messages[0].children.length;
 

@@ -208,9 +208,6 @@ form#chatinput #message::-webkit-input-placeholder
 /* Whisper user name tags */
 .mitem.whisper-local .nametag, .mitem.whisper .nametag 
 {
-	border-width: 2px;
-	border-style: solid;
-	/*border-color: rgb(255, 182, 66);*/
 	background-color: rgba(255, 182, 66, .40);
 	color: #fff;
 	font-weight: bold;
@@ -247,9 +244,10 @@ form#chatinput #message::-webkit-input-placeholder
 	position: absolute;
 
 	background-color: rgba(255, 182, 66, .40);
+	border-color: none;
 	font-size: 18px;
 	color: white;
-	font-style: bold;
+	font-weight: bold;
 }
 
 #openSettingsButton
