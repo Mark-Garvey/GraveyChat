@@ -1,0 +1,48 @@
+﻿<!doctype html>
+<html lang="en-gb">
+	<head>
+		<link href="style.css" rel="stylesheet" />
+        <meta charset="utf-8" />
+		<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+        <script type="text/javascript" src="js/app.skeleton.js"></script>
+        <script type="text/javascript" src="js/gamemode.factions.js"></script>
+		<script type="text/javascript" src="js/chat.js"></script>
+
+        <script type="text/javascript">
+            //---------------------------------------
+            // Entry point for the chat service.
+            //---------------------------------------
+            window.ready = (function () {
+                this.chat = new ChatManager();
+                this.chat.load();
+
+                window.addEventListener('focus', function () {
+                    this.focus();
+                }.bind(this.chat))
+
+                window.addEventListener('blur', function () {
+                    this.blur();
+                }.bind(this.chat))
+            });
+
+            $(function () {
+                if (window.location.protocol == "file:") {
+                    window.skeleton();
+                    window.ready();
+                    
+                    app.skeleton(window.chat);
+                }
+            });
+
+        </script>
+	</head>
+
+	<body>
+        <div id="chat">
+            <div id="content">
+                <div id="messages" class="clear"></div>
+                <input id="message" placeholder="" autocomplete="off" maxlength="512" />
+            </div>
+        </div>
+	</body>
+</html>

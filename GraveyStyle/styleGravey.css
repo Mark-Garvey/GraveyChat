@@ -19,7 +19,7 @@ body {
 @font-face
 {
 	font-family:glow_monofonto_vl_dialogs;
-	src:url("fonts/glow_monofonto_vl_dialogs.fnt");
+	src:url("fonts/FNV/glow_monofonto_vl_dialogs.fnt");
 	
 	font-family:AnimeSans;
 	src:url("fonts/OpenSans.ttf");
@@ -210,7 +210,7 @@ form#chatinput #message::-webkit-input-placeholder
 {
 	border-width: 2px;
 	border-style: solid;
-	border-color: rgb(255, 182, 66);
+	/*border-color: rgb(255, 182, 66);*/
 	background-color: rgba(255, 182, 66, .40);
 	color: #fff;
 	font-weight: bold;
@@ -245,8 +245,11 @@ form#chatinput #message::-webkit-input-placeholder
 	
 	top: -32px;
 	position: absolute;
-	
-	background-color: red;
+
+	background-color: rgba(255, 182, 66, .40);
+	font-size: 18px;
+	color: white;
+	font-style: bold;
 }
 
 #openSettingsButton
@@ -256,23 +259,42 @@ form#chatinput #message::-webkit-input-placeholder
     height: 32px;
 }
 
-#allChat
+#allTab
 {
 	position: inline;
 	height: 32px;
 }
 
-#globalChat
+#globalTab
 {
 	position: inline;
 	height: 32px;
 }
 
-#localChat
+#localTab
 {
 	position: inline;
     height: 32px;
 }
+
+#factionTab
+{
+	position: inline;
+    height: 32px;
+}
+
+#whisperTab
+{
+	position: inline;
+    height: 32px;
+}
+
+#systemTab
+{
+	position: inline;
+    height: 32px;
+}
+
 
 /*******************************
  * Chat Settings
@@ -288,6 +310,11 @@ form#chatinput #message::-webkit-input-placeholder
 	left: 600px;
 	
 	display: none;
+	
+}
+
+#settingsMenuImage
+{
 }
 
 #exitSettingsButton

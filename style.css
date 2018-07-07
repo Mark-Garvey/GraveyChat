@@ -1,0 +1,193 @@
+/*******************************
+ * Global styles
+*******************************/
+textarea, input {
+	outline: none;
+}
+
+body, html {
+    overflow-x: hidden; 
+    overflow-y: hidden;
+    -webkit-font-smoothing: none;
+}
+body {
+	/* Make the panel transparent to the awesomium client */
+	background-color: transparent;
+}
+
+/*******************************
+ * Content Wrapper
+*******************************/
+#content {
+	position: absolute;
+	top:    0;
+	bottom: 0;
+
+	left:  0;
+	right: 0;
+}
+
+/*******************************
+ * Chat component
+*******************************/
+#chat {
+    width: 600px;
+    height: 350px;
+
+    position: absolute;
+
+    display: none; /* hide by default */
+}
+
+/*******************************
+ * Message Input
+*******************************/
+#message
+{
+	position: absolute;
+	bottom: 0;
+	left:   0;
+	right:  0;
+	margin: 0;
+
+    opacity: 0;
+    
+	background-color: rgba(30, 30, 30, 0.4);
+
+	border-width: 0;
+    padding:      0.5em;
+    font-size:    15px;
+    line-height:  1.2em;
+    color: #fff;
+    font-family: helvetica, sans-serif;
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar {
+	display: block;
+	background-color: transparent;
+	width: 10px;
+}
+::-webkit-scrollbar-thumb  {
+    background-color: #333;
+}
+
+#message.focused {
+    opacity: 1;
+}
+
+form#chatinput #message::-webkit-input-placeholder
+{
+    color: #aaa;
+}
+
+#messages
+{
+	-webkit-transition: background-color 0.4s;
+    transition: background-color 0.4s;
+
+    padding: 10px;
+    top:    0;
+    left:   0;
+    right:  0;
+    bottom: 33px;
+    position:   absolute;
+    overflow-x: hidden;
+    word-wrap:  normal;
+}
+#messages.dim {
+	background-color: rgba(30, 30, 30, 0.4);
+}
+#messages.clear {
+	background-color: rgba(30, 30, 30, 0.0);
+}
+
+
+/*******************************
+ * Message type styling
+*******************************/
+.mitem {
+    font-family: helvetica, sans-serif;
+    color: #fff;
+    text-shadow: 0px 0px 5px #000;
+    -webkit-font-smoothing: antialiased;
+    white-space: pre-wrap;
+}
+
+.mitem .nametag {
+	font-weight: bold;
+}
+
+.nametag:after {
+	content: ': ';
+}
+
+.nameprefix {
+    padding: 2px;
+    border-radius: 2px;
+    margin-right:5px;
+    text-align:center;
+    font-size: 14px;
+    display: inline-block;
+    width: 20px;
+    line-height: 18px;
+    vertical-align: middle;
+    font-family: Consolas;
+    margin-bottom: 3px;
+}
+
+.globaltag {
+    background-color: #000;
+    color: #fff;
+}
+.globaltag::after {
+    content: '//';
+}
+
+.factiontag {
+    background-color: #4da6ff;
+    color: #fff;
+}
+.factiontag::after {
+    content: 'F';
+}
+
+/* System messages */
+.mitem.system .nametag {
+	color: red;
+}
+
+.mitem.system {
+}
+
+.mitem.system_head {
+    color: #4da6ff;
+    font-size: 120%;
+}
+
+.mitem.system_console {
+    font-weight: bold;
+}
+
+.mitem.system_sub_head {
+    font-size: 110%;
+}
+
+/* Whisper messages */
+.mitem.whisper .nametag, .mitem.whisper,
+.mitem.whisper-local .nametag, .mitem.whisper-local
+{
+	color: rgba(218, 124, 198, 255);
+}
+
+/* "Jak to you: hello" */
+.mitem.whisper .nametag:after {
+	content: ' to you: ';
+}
+/* "You to Jak: hello" */
+.mitem.whisper-local .nametag:before {
+    content: 'You to ';
+}
+.mitem.whisper-local .namtag:after {
+    content: ': ';
+}
