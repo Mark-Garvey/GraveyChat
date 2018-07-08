@@ -422,7 +422,7 @@ function ChatManager()
     };
 
 	this.highlightCurrentTab = function(channel) {
-		for (let chan in channelType) {
+		for (var chan in channelType) {
 			var el = $("#" + channelType[chan] + "Tab");
 			el.css("background-color", "transparent");
 		}
