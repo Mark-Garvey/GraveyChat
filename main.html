@@ -1,21 +1,21 @@
 ﻿<!doctype html>
 <html lang="en-gb">
 	<head>
-		<link href="style.css" rel="stylesheet" />
+		<link href="styleGravey.css" rel="stylesheet" />
         <meta charset="utf-8" />
-		<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
-        <script type="text/javascript" src="js/app.skeleton.js"></script>
-        <script type="text/javascript" src="js/gamemode.factions.js"></script>
-		<script type="text/javascript" src="js/chat.js"></script>
+		<script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
+        <script type="text/javascript" src="../js/app.skeleton.js"></script>
+        <script type="text/javascript" src="../js/gamemode.factions.js"></script>
+		<script type="text/javascript" src="../js/chatCOpy.js"></script>
+		<script type="text/javascript" src="../js/chat.preference.js"></script>
 
         <script type="text/javascript">
             //---------------------------------------
             // Entry point for the chat service.
             //---------------------------------------
-            window.ready = (function () {
+            window.ready = (function () {		
                 this.chat = new ChatManager();
                 this.chat.load();
-
                 window.addEventListener('focus', function () {
                     this.focus();
                 }.bind(this.chat))
@@ -29,7 +29,7 @@
                 if (window.location.protocol == "file:") {
                     window.skeleton();
                     window.ready();
-                    
+                  
                     app.skeleton(window.chat);
                 }
             });
@@ -37,12 +37,32 @@
         </script>
 	</head>
 
+
 	<body>
+		
+		
+
         <div id="chat">
             <div id="content">
+				<div id="menu">
+					<input id="openSettingsButton" type="image" src="settingsBar/gear.png" alt="cog button" onclick="window.openSettings()"></input>
+					<img id="allTab" type="image" src="settingsBar/all.png" alt="All"></img>
+					<img id="globalTab" type="image" src="settingsBar/global.png" alt="Global"></img>
+					<img id="localTab" type="image" src="settingsBar/local.png" alt="Local"></img>
+					<img id="factionTab" type="image" src="settingsBar/faction.png" alt="Faction"></img>
+					<img id="whisperTab" type="image" src="settingsBar/whisper.png" alt="Whisper"></img>
+					<img id="systemTab" type="image" src="settingsBar/system.png" alt="System"></img>
+				</div>
+				
                 <div id="messages" class="clear"></div>
                 <input id="message" placeholder="" autocomplete="off" maxlength="512" />
+				
+				<div id="settings">
+					<input id="settingsMenu" type="image" src="settingsBar/settingsMenu.jpg" alt="Settings Menu not found. F4 to close" onclick="window.closeSettings()"></input>
+				</div>
             </div>
-        </div>
+        </div>   
+		
+		
 	</body>
-</html>
+	

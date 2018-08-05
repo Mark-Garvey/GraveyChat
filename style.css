@@ -15,14 +15,24 @@ body {
 	background-color: transparent;
 }
 
+	/* custom fonts */
+@font-face
+{
+	font-family:glow_monofonto_vl_dialogs;
+	src:url("fonts/FNV/glow_monofonto_vl_dialogs.fnt");
+	
+	font-family:AnimeSans;
+	src:url("fonts/OpenSans.ttf");
+}
+
 /*******************************
  * Content Wrapper
 *******************************/
 #content {
 	position: absolute;
-	top:    0;
+	
+	top:    32px;
 	bottom: 0;
-
 	left:  0;
 	right: 0;
 }
@@ -32,10 +42,15 @@ body {
 *******************************/
 #chat {
     width: 600px;
-    height: 350px;
-
-    position: absolute;
-
+    height: 300px;
+	
+	position: absolute; 
+	
+	float: left;
+	
+	margin-right:auto;
+	margin-left: auto;
+ 
     display: none; /* hide by default */
 }
 
@@ -51,17 +66,22 @@ body {
 	margin: 0;
 
     opacity: 0;
-    
-	background-color: rgba(30, 30, 30, 0.4);
-
-	border-width: 0;
-    padding:      0.5em;
-    font-size:    15px;
+	background-color: rgba(255, 182, 66, .40); /* input box */
+	
+	border-style: solid;
+	border-color:  rgb(255, 182, 66);
+	border-top-width: 2px;
+	border-bottom-width: 2px;
+	border-left-width: 2px;
+	border-right-width: 2px;
+    padding:      .5em;
+    font-size:    18px;
     line-height:  1.2em;
-    color: #fff;
-    font-family: helvetica, sans-serif;
+    color:		  #fff; 
+    font-family: AnimeSans, sans-serif;
     -webkit-appearance: none;
 }
+
 
 ::-webkit-scrollbar {
 	display: block;
@@ -78,7 +98,7 @@ body {
 
 form#chatinput #message::-webkit-input-placeholder
 {
-    color: #aaa;
+    color: #fff;
 }
 
 #messages
@@ -86,20 +106,22 @@ form#chatinput #message::-webkit-input-placeholder
 	-webkit-transition: background-color 0.4s;
     transition: background-color 0.4s;
 
-    padding: 10px;
+	padding: 10px;
     top:    0;
     left:   0;
     right:  0;
-    bottom: 33px;
+    bottom: 45px;
     position:   absolute;
     overflow-x: hidden;
     word-wrap:  normal;
+	
+	font-size:    18px;
 }
 #messages.dim {
-	background-color: rgba(30, 30, 30, 0.4);
+	background-color: rgba(30, 30, 30, .40);
 }
 #messages.clear {
-	background-color: rgba(30, 30, 30, 0.0);
+	background-color: rgba(30, 30, 30, .00);
 }
 
 
@@ -107,8 +129,9 @@ form#chatinput #message::-webkit-input-placeholder
  * Message type styling
 *******************************/
 .mitem {
-    font-family: helvetica, sans-serif;
-    color: #fff;
+    font-family:  AnimeSans, sans-serif;
+	
+    color: #fff; 
     text-shadow: 0px 0px 5px #000;
     -webkit-font-smoothing: antialiased;
     white-space: pre-wrap;
@@ -127,7 +150,7 @@ form#chatinput #message::-webkit-input-placeholder
     border-radius: 2px;
     margin-right:5px;
     text-align:center;
-    font-size: 14px;
+    font-size: 18px;
     display: inline-block;
     width: 20px;
     line-height: 18px;
@@ -136,7 +159,8 @@ form#chatinput #message::-webkit-input-placeholder
     margin-bottom: 3px;
 }
 
-.globaltag {
+
+.globaltag { /* Global "//" tag */
     background-color: #000;
     color: #fff;
 }
@@ -152,7 +176,10 @@ form#chatinput #message::-webkit-input-placeholder
     content: 'F';
 }
 
-/* System messages */
+/*
+* System messages
+*/
+
 .mitem.system .nametag {
 	color: red;
 }
@@ -161,8 +188,8 @@ form#chatinput #message::-webkit-input-placeholder
 }
 
 .mitem.system_head {
-    color: #4da6ff;
-    font-size: 120%;
+    color: rgb(255, 182, 66);
+    font-size: 120%; 	
 }
 
 .mitem.system_console {
@@ -173,21 +200,125 @@ form#chatinput #message::-webkit-input-placeholder
     font-size: 110%;
 }
 
-/* Whisper messages */
-.mitem.whisper .nametag, .mitem.whisper,
-.mitem.whisper-local .nametag, .mitem.whisper-local
+
+/*
+* Whisper messaging
+*/
+
+/* Whisper user name tags */
+.mitem.whisper-local .nametag, .mitem.whisper .nametag 
 {
-	color: rgba(218, 124, 198, 255);
+	background-color: rgba(255, 182, 66, .40);
+	color: #fff;
+	font-weight: bold;
+}
+
+/* Whisper user text */
+.mitem.whisper-local, .mitem.whisper 
+{
+	color: rgb(255, 182, 66);
 }
 
 /* "Jak to you: hello" */
-.mitem.whisper .nametag:after {
-	content: ' to you: ';
+.mitem.whisper .nametag::after {
+	content: ' to you ';
 }
 /* "You to Jak: hello" */
-.mitem.whisper-local .nametag:before {
+.mitem.whisper-local .nametag::before {
     content: 'You to ';
 }
-.mitem.whisper-local .namtag:after {
-    content: ': ';
+.mitem.whisper-local .nametag::after {
+	content: '';
 }
+
+/*******************************
+ * Tab Menu
+*******************************/
+
+#menu
+{
+	height: 32px;
+	width: 600px;
+	
+	top: -32px;
+	position: absolute;
+
+	background-color: rgba(255, 182, 66, .40);
+	border-color: none;
+	font-size: 18px;
+	color: white;
+	font-weight: bold;
+}
+
+#openSettingsButton
+{
+	position: inline;
+    width: 32px;
+    height: 32px;
+}
+
+#allTab
+{
+	position: inline;
+	height: 32px;
+	background-color: black /* only set for statup */
+}
+
+#globalTab
+{
+	position: inline;
+	height: 32px;
+}
+
+#localTab
+{
+	position: inline;
+    height: 32px;
+}
+
+#factionTab
+{
+	position: inline;
+    height: 32px;
+}
+
+#whisperTab
+{
+	position: inline;
+    height: 32px;
+}
+
+#systemTab
+{
+	position: inline;
+    height: 32px;
+}
+
+
+/*******************************
+ * Chat Settings
+*******************************/
+
+#settings
+{
+	position: absolute;
+	
+	height: 100px;
+	width: 100px;
+	float: left;
+	left: 600px;
+	
+	display: none;
+	
+}
+
+#settingsMenuImage
+{
+}
+
+#exitSettingsButton
+{	
+}
+
+
+
