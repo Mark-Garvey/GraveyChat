@@ -22,3 +22,6 @@
 
 
 *All image or icon that are shown/used are temporary items (to check the flow of the menu) and are prone to change*
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTg2NzM3MTU1M119
+-->
