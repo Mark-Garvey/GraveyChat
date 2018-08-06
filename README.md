@@ -1,14 +1,27 @@
-# GraveyChat
+# GraveyChat /Chat 2.0 (internal name)
 
-Custom ChatBox for NV:MP (https://nv-mp.com/forum/index.php)
+> Gravey chat is a modification of the NVMP chat with addition to it's
+> feature by the user Mr Gravey.
 
-Custom Non-original files are listed below:
 
-Folder: js/
-	-chat.preference.js
-	
-Folder: GraveyStyle/
-	-All image files
-	-MainV2.html
-	-settings.html
-	-styleGravey.css
+## Chat Tabs
+**Menu can be clicked on or selected by using the keyboard**
+![As you can see](https://i.imgur.com/7DY74nj.gif)
+
+
+| Key | Menu |
+|--|--|
+| F4 | Settings (not functional atm/ shortcut img) 
+|F5 | All 
+|F6 | Global
+|F7 | Local
+|F8 | Faction
+|F9 | Whisper
+|F10 | System (logins, deaths, etc)
+
+
+
+*All image or icon that are shown/used are temporary items (to check the flow of the menu) and are prone to change*
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTg2NzM3MTU1M119
+-->
