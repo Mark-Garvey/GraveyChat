@@ -21,7 +21,8 @@
 
 
 
-*All image or icon that are shown/used are temporary items (to check the flow of the menu) and are prone to change*
+*All image or icon that are shown/used are temporary items (to check the flow of the menu) and are prone to change
+Icons supplied from icons8.com*
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg2NzM3MTU1M119
+eyJoaXN0b3J5IjpbOTk1MTgxMTAsMTg2NzM3MTU1M119
 -->
