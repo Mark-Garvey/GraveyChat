@@ -23,9 +23,12 @@
 **Addition of a menu to choose from next to the text input**
 ![chat plus](https://i.imgur.com/zV6ckGC.png)
 
+
+
+___
 *All image or icon that are shown/used are temporary items (to check the flow of the menu) and are prone to change
 Icons supplied from icons8.com*
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM1MzUwMTA4OCw5OTUxODExMCwxODY3Mz
-cxNTUzXX0=
+eyJoaXN0b3J5IjpbODQ4NTAzMTQ1LDk5NTE4MTEwLDE4NjczNz
+E1NTNdfQ==
 -->
