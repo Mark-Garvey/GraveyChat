@@ -21,6 +21,7 @@
 
 ## Chat Plus
 **Addition of a menu to choose from next to the text input**
+
 ![chat plus](https://i.imgur.com/zV6ckGC.png)
 
 
