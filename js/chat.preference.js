@@ -23,6 +23,15 @@ window.closeSettings = function()
 
 
 
+window.chatbutton = function()
+{
+
+    document.getElementById("chatmenu").style.display = "block";
+}
+
+
+
+
 
 window.allTab = function()
 {
@@ -71,5 +80,6 @@ e.which = 121; // # Some key code value
 e.keyCode = 121
 $("input").trigger(e);
 }
+
 
 

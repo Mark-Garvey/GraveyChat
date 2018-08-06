@@ -107,7 +107,7 @@ form#chatinput #message::-webkit-input-placeholder
     transition: background-color 0.4s;
 
 	padding: 10px;
-    top:    0;
+    top:    2;
     left:   0;
     right:  0;
     bottom: 45px;
@@ -122,6 +122,45 @@ form#chatinput #message::-webkit-input-placeholder
 }
 #messages.clear {
 	background-color: rgba(30, 30, 30, .00);
+}
+
+
+/*******************************
+ * Chat Button
+*******************************/
+
+
+#chatButton
+{
+    
+	height: 16px;
+	width: 16px;
+	position: absolute;
+	bottom: 25;
+	left:   0;
+
+    
+
+	background-color: rgba(255, 182, 66, .40);
+	border-color: none;
+	font-size: 18px;
+	color: white;
+	font-weight: bold;
+}
+
+#chatmenu
+{
+    height: 3333px;
+	width: 3333px;
+    position: static;
+	background-color: aqua;
+	left: 600px;
+    
+
+
+	display: none;
+	
+    
 }
 
 
@@ -242,9 +281,11 @@ form#chatinput #message::-webkit-input-placeholder
 	
 	top: -32px;
 	position: absolute;
-
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
 	background-color: rgba(255, 182, 66, .40);
-	border-color: none;
+	border-color: rgba(0, 0, 0, 0.1);
+    border
 	font-size: 18px;
 	color: white;
 	font-weight: bold;
@@ -293,6 +334,8 @@ form#chatinput #message::-webkit-input-placeholder
 	position: inline;
     height: 32px;
 }
+
+
 
 
 /*******************************
