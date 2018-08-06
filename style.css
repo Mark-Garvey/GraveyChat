@@ -261,7 +261,7 @@ form#chatinput #message::-webkit-input-placeholder
 {
 	position: inline;
 	height: 32px;
-	background-color: black /* only set for statup */
+	filter: invert(100)/* only set for statup */
 }
 
 #globalTab
