@@ -19,10 +19,13 @@
 |F9 | Whisper
 |F10 | System (logins, deaths, etc)
 
-
+## Chat Plus
+**Addition of a menu to choose from next to the text input**
+![chat plus](https://i.imgur.com/zV6ckGC.png)
 
 *All image or icon that are shown/used are temporary items (to check the flow of the menu) and are prone to change
 Icons supplied from icons8.com*
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTk1MTgxMTAsMTg2NzM3MTU1M119
+eyJoaXN0b3J5IjpbLTM1MzUwMTA4OCw5OTUxODExMCwxODY3Mz
+cxNTUzXX0=
 -->
