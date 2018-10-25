@@ -23,7 +23,63 @@ window.closeSettings = function()
 
 
 
+window.chatbutton = function()
+{
 
+    document.getElementById("chatmenu").style.display = "block";
+}
+
+
+
+
+
+window.allTab = function()
+{
+var e = jQuery.Event("keydown");
+e.which = 116; // # Some key code value
+e.keyCode = 116
+$("input").trigger(e);
+}
+
+window.globalTab = function()
+{
+var e = jQuery.Event("keydown");
+e.which = 117; // # Some key code value
+e.keyCode = 117
+$("input").trigger(e);
+}
+
+window.localTab = function()
+{
+var e = jQuery.Event("keydown");
+e.which = 118; // # Some key code value
+e.keyCode = 118
+$("input").trigger(e);
+}
+
+window.factionTab = function()
+{
+var e = jQuery.Event("keydown");
+e.which = 119; // # Some key code value
+e.keyCode = 119
+$("input").trigger(e);
+}
+
+window.whisperTab = function()
+{
+var e = jQuery.Event("keydown");
+e.which = 120; // # Some key code value
+e.keyCode = 120
+$("input").trigger(e);
+}
+
+window.systemTab = function()
+{
+var e = jQuery.Event("keydown");
+e.which = 121; // # Some key code value
+e.keyCode = 121
+$("input").trigger(e);
+}
 
 
 

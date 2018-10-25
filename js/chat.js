@@ -11,23 +11,116 @@
 // to the chat.html document using the proper 
 // <link> tags.
 //=================================================
+
 function ChatManager()
 {
-    const kViewableMessageLimit = 30;        // How many messages should be visible by the player at a time.
+    const kViewableMessageLimit = 50;        // How many messages should be visible by the player at a time.
     const kDefaultColour = [255, 255, 255];  // The default colour to resort to invalid colour formats.
     const kDimTimeRemote = 10000;            // Time before the panel dims from a remote message.
     const kDimTimeLocal = 2000;              // Time before the panel dims from coming out of the input box.
 
-    const kMaxMessageHistory = 80;
-
+    const kMaxMessageHistory = 80;			// Player sent Command/Chat history.
+	
+	//used for currentChannel
+	const channelType = {
+		ALL: 'all',
+		GLOBAL: 'global',
+		LOCAL: 'local',
+		FACTION: 'faction',
+		WHISPER: 'whisper',
+		SYSTEM: 'system',
+	}
+	var currentChannel = channelType.ALL;
+	
+	//chck if settings menu is open
+	var isSettingsOpen = false;
+	
+	//Array queues that hold messages for a specified channel(all/global/local/faction/whisper/system)
+	//Each array holds up to kViewableMessageLimit amount
+	//delimter used is § (alt 21)
+	var allChat = [];
+	var globalChat = [];
+	var localChat = [];
+	var factionChat = []
+	var whisperChat = [];
+	var systemChat = [];
+	
+	this.storeMessage = function(channel, name, text, colour) {
+		if(allChat.length >= kViewableMessageLimit)
+			allChat.shift();
+		
+		switch(channel) {
+			case "system": 
+			{
+				if(systemChat.length >= kViewableMessageLimit) 
+					systemChat.shift();
+				
+				allChat.push(channel + "§" + text + "§" + colour);
+				systemChat.push(channel + "§" + text + "§" + colour);
+				break;
+			}
+			
+			case "global":
+			{
+				if(globalChat.length >= kViewableMessageLimit) 
+					globalChat.shift();
+				
+				allChat.push(channel + "§" + name + "§" + text + "§" + colour);
+				globalChat.push(channel + "§"  + name + "§" + text + "§" + colour);
+				break;
+			}
+			
+			case "local":
+			{
+				if(localChat.length >= kViewableMessageLimit) 
+					localChat.shift();
+				
+				
+				allChat.push(channel + "§" + name + "§" + text + "§" + colour);
+				localChat.push(channel + "§"  + name + "§" + text + "§" + colour);
+				break;
+			}
+			
+			case "faction":
+			{
+				if(factionChat.length >= kViewableMessageLimit) 
+					factionChat.shift();
+				
+				allChat.push(channel + "§" + name + "§" + text + "§" + colour);
+				factionChat.push(channel + "§"  + name + "§" + text + "§" + colour);
+				break;
+			}		
+			
+			case "whisper":
+			{
+				if(whisperChat.length >= kViewableMessageLimit)
+					whisperChat.shift();
+				
+				//colour is a boolean (for is_local) when a whisper message is passed in
+				(colour) ? colour = 1 : colour = 0;
+				allChat.push(channel + "§" + name + "§" + text + "§" + colour);
+				whisperChat.push(channel + "§"  + name + "§" + text + "§" + colour);
+				break;
+			}
+		};
+		
+	};
+	
     const kKeyboardInput =
     {
-        escape : 27,
-        enter  : 13,
-        up     : 38,
-        down   : 40,
-        pageup   : 33,
-        pagedown : 34
+        escape 	: 27,
+        enter  	: 13,
+        up     	: 38,
+        down   	: 40,
+        pageup  : 33,
+        pagedown: 34,
+		f4		: 115,
+		f5		: 116,
+		f6		: 117,
+		f7		: 118,
+		f8		: 119,
+		f9		: 120,
+		f10		: 121
     };
 
     var message_history = [];
@@ -35,7 +128,8 @@ function ChatManager()
     var gamemode = null;
 
     // DOM element cache.
-    var input_box, messages, content = null;
+    var input_box, messages, content;
+	input_box = messages = content = null;
 
     // Temporary storage.
     var temp_placeholder = null;
@@ -167,7 +261,7 @@ function ChatManager()
                 return;
         }
 
-        window.app.on_message(input_box.value);
+        window.app.on_message(input_box.value); 
 
         input_box.value = "";
         $(input_box).blur();
@@ -219,9 +313,133 @@ function ChatManager()
                 messages.get(0).scrollTop -= Math.min(100, messages.get(0).scrollTop);
                 break;
             }
+			
+			case kKeyboardInput.f4:
+            {
+                if(isSettingsOpen) {
+					closeSettings()
+					isSettingsOpen = false;
+				} 
+				else {
+					openSettings();
+					isSettingsOpen = true;
+				}
+                break;
+            }
+			
+			case kKeyboardInput.f5:
+			{
+				//display all chat
+				currentChannel = channelType.ALL;
+				this.clearChatBox();
+				for(var i = 0; i < allChat.length; i++) {
+					var message = allChat[i] + '';
+					message = message.split("§");
+					if(message[0] == "system") {
+						this.addSystemMessageFormatted(message[1], message[2]);  
+					}
+					else if(message[0] == "whisper") {
+						this.addWhisperMessageFormatted(message[1], message[2], parseInt(message[3]));
+					}
+					else {					
+						this.addUserMessageFormated(message[0], message[1], message[2], message[3]);
+					}
+				}
+				this.highlightCurrentTab("all");
+				break;
+			}
+			
+			case kKeyboardInput.f6:
+			{
+				//display global chat
+				currentChannel = channelType.GLOBAL;
+				this.clearChatBox();
+				for(var i = 0; i < globalChat.length; i++) {
+					var message = globalChat[i] + '';
+					message = message.split("§");
+					this.addUserMessageFormated(message[0], message[1], message[2], message[3]);
+				}
+				this.highlightCurrentTab("global");
+				break;
+			}
+			
+			case kKeyboardInput.f7:
+			{
+				//display local chat
+				currentChannel = channelType.LOCAL;
+				this.clearChatBox();
+				for(var i = 0; i < localChat.length; i++) {
+					var message = localChat[i] + '';
+					message = message.split("§");
+					this.addUserMessageFormated(message[0], message[1], message[2], message[3]);
+				}
+				this.highlightCurrentTab("local");
+				break;
+			}
+			
+			case kKeyboardInput.f8:
+			{
+				//display faction chat
+				currentChannel = channelType.FACTION;
+				this.clearChatBox();
+				for(var i = 0; i < factionChat.length; i++) {
+					var message = factionChat[i] + '';
+					message = message.split("§");
+					this.addUserMessageFormated(message[0], message[1], message[2], message[3]);
+				}
+				this.highlightCurrentTab("faction");
+				break;
+			}
+			
+			case kKeyboardInput.f9:
+			{
+				//display whisper chat
+				currentChannel = channelType.WHISPER;
+				this.clearChatBox();
+				for(var i = 0; i < whisperChat.length; i++) {
+					var message = whisperChat[i] + '';
+					message = message.split("§");
+					this.addWhisperMessageFormatted(message[1], message[2], parseInt(message[3]));
+				}
+				this.highlightCurrentTab("whisper");
+				break;
+			}
+			
+			case kKeyboardInput.f10:
+			{
+				//display system chat
+				currentChannel = channelType.SYSTEM;
+				this.clearChatBox();
+				for(var i = 0; i < systemChat.length; i++) {
+					var message = systemChat[i] + '';
+					message = message.split("§");
+					this.addSystemMessageFormatted(message[1], message[2]);
+				}
+				this.highlightCurrentTab("system");
+				break;
+			}
         }
     };
 
+	this.highlightCurrentTab = function(channel) {
+		for (var chan in channelType) {
+			var el = $("#" + channelType[chan] + "Tab");
+			el.css("filter", "invert(0)");
+		}
+		var el = $("#" + channel + "Tab");
+		el.css("filter", "invert(100)");
+	};
+	
+	this.clearChatBox = function() {
+	var dead_children = messages[0].children.length;
+
+        if (dead_children > 0) {
+            for (var i = 0; i < dead_children; i++) {
+                messages.find("div:first").remove();
+            }
+        }
+	};
+	
     this.reorder = function () {
         var dead_children = messages[0].children.length - kViewableMessageLimit;
 
@@ -288,7 +506,6 @@ function ChatManager()
     // C++ End point API
     //---------------------------------------
     this.addRawMessage = function (text, colour) {
-
         if (app.sio_get("Chat", "ShowSystemMessages") == 0) {
             return;
         }
@@ -304,7 +521,15 @@ function ChatManager()
         if (app.sio_get("Chat", "ShowSystemMessages") == 0) {
             return;
         }
-
+		
+		this.storeMessage("system", null, text, colour);
+		
+		//check for current channel
+		if(currentChannel == "system"|| currentChannel == "all")
+			this.addSystemMessageFormatted(text, colour);
+	};
+	
+	this.addSystemMessageFormatted = function(text, colour) {
         var MessageClassName = null;
         var MessageColour = null;
         var colours = this.parse_colours(colour);
@@ -340,12 +565,20 @@ function ChatManager()
         MessageTag.content.innerText = text;
     };
 
+	// Where ChatBox gets messages from server
     this.addUserMessage = function (channel, name, text, colour) {
-
         if (app.sio_get("Chat", "ShowPlayerMessages") == 0) {
             return;
         }
-
+		
+		this.storeMessage(channel, name, text, colour);
+		
+		//check for current channel
+		if(currentChannel == channel || currentChannel == "all")
+			this.addUserMessageFormated(channel, name, text, colour);
+	};
+	
+	this.addUserMessageFormated = function (channel, name, text, colour) {
         var colours = this.parse_colours(colour);
         var MessageTag = this._new_message("player", true);
         MessageTag.content.innerText = text;
@@ -372,12 +605,19 @@ function ChatManager()
     };
 
     this.addWhisperMessage = function (name, text, is_local) {
-
-        if (app.sio_get("Chat", "ShowWhisperMessages") == 0) {
+		if (app.sio_get("Chat", "ShowWhisperMessages") == 0) {
             return;
         }
-
-        // Local messages need a different suffix.
+		
+		this.storeMessage("whisper", name, text, is_local);
+		
+		//check for current channel
+		if(currentChannel == "whisper" || currentChannel == "all")
+			this.addWhisperMessageFormatted(name, text, is_local);
+	};
+	
+	this.addWhisperMessageFormatted = function (name, text, is_local) {
+		// Local messages need a different suffix.
         var MessageTag = this._new_message(is_local ? "whisper-local" : "whisper", true);
 
         // Setup accordingly.
@@ -431,13 +671,23 @@ function ChatManager()
             var anchor_y = anchor.indexOf('t') !== -1 ? "top" : "bottom";
             var anchor_x = anchor.indexOf('r') !== -1 ? "right" : "left";
 
+			//alters chatbox
             var el = $("#chat");
             el.css(anchor_x, pos_x);
             el.css(anchor_y, pos_y);
             el.css("width", width);
             el.css("height", height);
-
+			
+			//alters menu bar
+			el = $("#menu");
+			el.css("width", width);
+			
+			//alters settings menu
+			el = $("#settings");
+			el.css("left", width);
+			
             $("#chat").show();
+			$("#menu").show();
         }
 
         // Preference: Scaling
