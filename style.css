@@ -302,8 +302,11 @@ form#chatinput #message::-webkit-input-placeholder
 {
 	position: inline;
 	height: 32px;
-	filter: invert(100)/* only set for statup */
-}
+	
+	/* only set for statup */
+	-webkit-filter: invert(100%);
+    filter: invert(100%);
+}	
 
 #globalTab
 {

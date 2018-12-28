@@ -424,10 +424,12 @@ function ChatManager()
 	this.highlightCurrentTab = function(channel) {
 		for (var chan in channelType) {
 			var el = $("#" + channelType[chan] + "Tab");
-			el.css("filter", "invert(0)");
+			el.css("filter", "invert(0%)");
+			el.css("-webkit-filter", "invert(0%)");
 		}
 		var el = $("#" + channel + "Tab");
-		el.css("filter", "invert(100)");
+		el.css("filter", "invert(100%)");
+		el.css("-webkit-filter", "invert(100%)");
 	};
 	
 	this.clearChatBox = function() {
