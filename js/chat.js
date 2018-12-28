@@ -26,7 +26,7 @@ function ChatManager()
 		ALL: 'all',
 		GLOBAL: 'global',
 		LOCAL: 'local',
-		FACTION: 'faction',
+		FACTION: 'factions',
 		WHISPER: 'whisper',
 		SYSTEM: 'system',
 	}
@@ -81,7 +81,7 @@ function ChatManager()
 				break;
 			}
 			
-			case "faction":
+			case "factions":
 			{
 				if(factionChat.length >= kViewableMessageLimit) 
 					factionChat.shift();
@@ -379,7 +379,7 @@ function ChatManager()
 			
 			case kKeyboardInput.f8:
 			{
-				//display faction chat
+				//display factions chat
 				currentChannel = channelType.FACTION;
 				this.clearChatBox();
 				for(var i = 0; i < factionChat.length; i++) {
@@ -387,7 +387,7 @@ function ChatManager()
 					message = message.split("§");
 					this.addUserMessageFormated(message[0], message[1], message[2], message[3]);
 				}
-				this.highlightCurrentTab("faction");
+				this.highlightCurrentTab("factions");
 				break;
 			}
 			
@@ -519,6 +519,7 @@ function ChatManager()
         MessageTag.content.style.color = colours;
     };
 
+	// Where ChatBox gets system messages from server
     this.addSystemMessage = function (text, colour) {
         if (app.sio_get("Chat", "ShowSystemMessages") == 0) {
             return;
@@ -531,6 +532,7 @@ function ChatManager()
 			this.addSystemMessageFormatted(text, colour);
 	};
 	
+	// Where system text is outputted to ChatBox
 	this.addSystemMessageFormatted = function(text, colour) {
         var MessageClassName = null;
         var MessageColour = null;
@@ -580,6 +582,8 @@ function ChatManager()
 			this.addUserMessageFormated(channel, name, text, colour);
 	};
 	
+	
+	// Where message text is outputted to ChatBox
 	this.addUserMessageFormated = function (channel, name, text, colour) {
         var colours = this.parse_colours(colour);
         var MessageTag = this._new_message("player", true);
@@ -606,6 +610,7 @@ function ChatManager()
         MessageTag.nametag.style.color = colours;
     };
 
+	// Where ChatBox gets whispers from server
     this.addWhisperMessage = function (name, text, is_local) {
 		if (app.sio_get("Chat", "ShowWhisperMessages") == 0) {
             return;
@@ -618,6 +623,7 @@ function ChatManager()
 			this.addWhisperMessageFormatted(name, text, is_local);
 	};
 	
+	// Where whisper text is outputted to ChatBox
 	this.addWhisperMessageFormatted = function (name, text, is_local) {
 		// Local messages need a different suffix.
         var MessageTag = this._new_message(is_local ? "whisper-local" : "whisper", true);

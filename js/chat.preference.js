@@ -57,7 +57,7 @@ e.keyCode = 118
 $("input").trigger(e);
 }
 
-window.factionTab = function()
+window.factionsTab = function()
 {
 var e = jQuery.Event("keydown");
 e.which = 119; // # Some key code value
