@@ -6,7 +6,7 @@ window.skeleton = function ()
             chat.addSystemMessage("Player has joined the game");
             chat.addUserMessage("global", "Player", "Going to Primm now", "100,100,200");
             chat.addUserMessage("local", "LocalPlayer", "follow me", "200,100,200");
-            chat.addUserMessage("faction", "[Leader] Player", "Go to /goodsprings lads", "200,100,200");
+            chat.addUserMessage("factions", "[Leader] Player", "Go to /goodsprings lads", "200,100,200");
             chat.addUserMessage("global", "Player", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque iaculis velit eu diam elementum, non ultrices velit tincidunt. Praesent malesuada egestas elit quis faucibus.", "100,100,200");
         },
 
