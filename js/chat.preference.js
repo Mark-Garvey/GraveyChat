@@ -80,6 +80,3 @@ e.which = 121; // # Some key code value
 e.keyCode = 121
 $("input").trigger(e);
 }
-
-
-
