@@ -21,18 +21,12 @@ window.closeSettings = function()
 	document.getElementById("settings").style.display = "none";
 }
 
-
-
 window.chatbutton = function()
 {
-
     document.getElementById("chatmenu").style.display = "block";
 }
 
-
-
-
-
+// Mouse functionality
 window.allTab = function()
 {
 var e = jQuery.Event("keydown");

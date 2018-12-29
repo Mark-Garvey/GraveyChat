@@ -129,7 +129,6 @@ form#chatinput #message::-webkit-input-placeholder
  * Chat Button
 *******************************/
 
-
 #chatButton
 {
     
@@ -148,21 +147,16 @@ form#chatinput #message::-webkit-input-placeholder
 	font-weight: bold;
 }
 
+/*unused menu*/
 #chatmenu
 {
     height: 3333px;
 	width: 3333px;
     position: static;
-	background-color: aqua;
 	left: 600px;
     
-
-
 	display: none;
-	
-    
 }
-
 
 /*******************************
  * Message type styling
@@ -197,7 +191,6 @@ form#chatinput #message::-webkit-input-placeholder
     font-family: Consolas;
     margin-bottom: 3px;
 }
-
 
 .globaltag { /* Global "//" tag */
     background-color: #000;
@@ -238,7 +231,6 @@ form#chatinput #message::-webkit-input-placeholder
 .mitem.system_sub_head {
     font-size: 110%;
 }
-
 
 /*
 * Whisper messaging
@@ -338,9 +330,6 @@ form#chatinput #message::-webkit-input-placeholder
     height: 32px;
 }
 
-
-
-
 /*******************************
  * Chat Settings
 *******************************/
@@ -365,6 +354,3 @@ form#chatinput #message::-webkit-input-placeholder
 #exitSettingsButton
 {	
 }
-
-
-
