@@ -128,8 +128,8 @@ function ChatManager()
     var gamemode = null;
 
     // DOM element cache.
-    var input_box, messages, content;
-	input_box = messages = content = null;
+    var input_box, messages, content, menu;
+	input_box = messages = menu = content = null;
 
     // Temporary storage.
     var temp_placeholder = null;
@@ -212,6 +212,7 @@ function ChatManager()
         input_box.setAttribute("placeholder", "");
         input_box.setAttribute("class", "focused");
         this.do_dim();
+        menu.show();
     };
 
     this.on_input_box_unfocus = function () {
@@ -228,6 +229,7 @@ function ChatManager()
         input_box.setAttribute("class", "");
 
         window.app.on_losefocus();
+        menu.hide();
     };
 
     this.blur = function () {
@@ -640,6 +642,7 @@ function ChatManager()
         // Get DOM elements before continuing with messaging initialisation.
         input_box = document.getElementById("message");
         messages = $(document.getElementById("messages"));
+        menu = $(document.getElementById("menu"));
         content = $(document.getElementById("content"));
         gm_timer = setInterval(this.check_for_gm.bind(this), 2000);
 
@@ -695,7 +698,7 @@ function ChatManager()
 			el.css("left", width);
 			
             $("#chat").show();
-			$("#menu").show();
+			$("#menu").hide();
         }
 
         // Preference: Scaling
